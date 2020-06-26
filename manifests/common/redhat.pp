@@ -28,4 +28,11 @@ class slurm::common::redhat inherits slurm::common {
     include ::firewalld
   }
 
+  if versioncmp($facts['os']['release']['major'], '8') >= 0 {
+    yum::repos { 'PowerTools':
+      ensure  => present,
+      enabled => true,
+    }
+  }
+
 }
